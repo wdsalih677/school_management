@@ -126,9 +126,11 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-left" wire:click="firstStepSubmit"
-                    type="button">{{trans('main_trans.Next')}}
-                    </button>
+                    @if ($updateMode)
+                        <button class="btn btn-success btn-sm nextBtn btn-lg pull-left" wire:click="editParentFormOne" type="button">{{trans('main_trans.Next')}}</button> 
+                    @else
+                        <button class="btn btn-success btn-sm nextBtn btn-lg pull-left" wire:click="firstStepSubmit" type="button">{{trans('main_trans.Next')}}</button>
+                    @endif
                 </div>
             </div>
         </div>

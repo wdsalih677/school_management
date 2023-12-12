@@ -86,6 +86,7 @@ return  [
     // ------------------------------------------------------------------------ //
 
     'parents'               =>'Parents',
+    'parents_list'          =>'Parents list',
     'add_parents'           =>'Add Parents',
 
     'Step1'                 =>'Step one',
@@ -94,11 +95,15 @@ return  [
     'Choose'                =>'Choose',
     'Next'                  =>'Next',
     'Back'                  =>'Back',
-    'Finish'                =>'Finish',
+    'Finish'                =>'Save Data',
 
     'Email'                 =>'Email',
     'Password'              =>'Password',
 
+    'Name_Father'           =>'Name Father',
+    'Name_Mother'           =>'Name Mother',
+    'job_Father'            =>'Job Father',
+    'job_Mother'            =>'Job Mother',
     'Name_Father_ar'        =>'Name Father AR',
     'Name_Father_en'        =>'Name Father EN',
     'Job_Father_ar'         =>'Job father AR',

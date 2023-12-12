@@ -12,7 +12,12 @@
             <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button"
                     wire:click="back(2)">{{ trans('main_trans.Back') }}
             </button>
-            <button type="button" class="btn btn-success btn-sm btn-lg pull-left" wire:click="submitForm" >{{ trans('main_trans.Finish') }}</button>
+            <button type="button" class="btn btn-success btn-sm btn-lg pull-left" wire:click="" >{{ trans('main_trans.Finish') }}</button>
+            @if ($updateMode)
+                <button class="btn btn-success btn-sm nextBtn btn-lg pull-left" wire:click="updateSubmitForm" type="button">{{trans('main_trans.Next')}}</button> 
+            @else
+                <button class="btn btn-success btn-sm nextBtn btn-lg pull-left" wire:click="submitForm" type="button">{{trans('main_trans.Next')}}</button>
+            @endif
         </div>
     </div>
 </div>

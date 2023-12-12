@@ -115,9 +115,11 @@
                 <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button" wire:click="back(1)">
                     {{trans('main_trans.Back')}}
                 </button>
-                <button class="btn btn-success btn-sm nextBtn btn-lg pull-left" type="button"
-                        wire:click="secondStepSubmit">{{trans('main_trans.Next')}}
-                </button>
+                @if ($updateMode)
+                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-left" wire:click="editParentFormTow" type="button">{{trans('main_trans.Next')}}</button> 
+                @else
+                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-left" wire:click="secondStepSubmit" type="button">{{trans('main_trans.Next')}}</button>
+                @endif
             </div>
         </div>
     </div>

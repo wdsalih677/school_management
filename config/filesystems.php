@@ -37,7 +37,7 @@ return [
         ],
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app/parent_attachments'),
+            'root' => storage_path('app/parent_attachments/'),
             'throw' => true,
         ],
 

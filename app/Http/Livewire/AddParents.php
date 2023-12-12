@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\nationalities\Nationalitie;
 use Illuminate\Support\Facades\Hash;
 use App\Models\bloods\Blood;
+use App\Models\parents\ParentAttachment;
 use App\Models\parents\StuParent;
 use App\Models\religions\Religion;
 use Livewire\Component;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 class AddParents extends Component
 {
     use WithFileUploads;
-    public $currentStep = 1 ,$catchError ,$successMessage ,$photos,
+    public $currentStep = 1 ,$catchError ,$successMessage ,$photos = [] , $show_table = true ,$updateMode = false ,
     // Father_INPUTS
     $Email, $Password,
     $Name_Father, $Name_Father_en,
@@ -30,29 +31,35 @@ class AddParents extends Component
     $Nationality_Mother_id, $Blood_Type_Mother_id,
     $Address_Mother, $Religion_Mother_id;
 
-    // public function updated($propertyName)
-    // {
-    //     $this->validateOnly($propertyName, [
-    //         'Email' => 'required|email',
-    //         'National_ID_Father' => 'required|string|min:10|max:10|regex:/[0-9]{9}/',
-    //         'Passport_ID_Father' => 'min:10|max:10',
-    //         'Phone_Father' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-    //         'National_ID_Mother' => 'required|string|min:10|max:10|regex:/[0-9]{9}/',
-    //         'Passport_ID_Mother' => 'min:10|max:10',
-    //         'Phone_Mother' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
-    //     ]);
-    // }
+    // realtime validation
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName, [
+            'Email' => 'required|email',
+            'National_ID_Father' => 'required|string|min:10|max:10|regex:/[0-9]{9}/',
+            'Passport_ID_Father' => 'min:10|max:10',
+            'Phone_Father' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'National_ID_Mother' => 'required|string|min:10|max:10|regex:/[0-9]{9}/',
+            'Passport_ID_Mother' => 'min:10|max:10',
+            'Phone_Mother' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
+        ]);
+    }
+
+    // render to return view
     public function render()
     {
         try{
             $nationalities = Nationalitie::get();
             $bloods = Blood::get();
             $religions = Religion::get();
-            return view('livewire.stu-parents.add-parents', compact('nationalities','bloods','religions'));
+            $stu_parents = StuParent::get();
+            return view('livewire.stu-parents.add-parents', compact('nationalities','bloods','religions','stu_parents'));
         }catch(\Exception $e){
             return $e;
         }
     }
+
+    //submit founction to save all form
     public function submitForm(){
         try{
             $stu_parent = new StuParent();
@@ -79,10 +86,10 @@ class AddParents extends Component
             $stu_parent->save();
             if (!empty($this->photos)){
                 foreach ($this->photos as $photo) {
-                    $photo->storeAs( 'app/parent_attachments/'.$this->National_ID_Father.'/'. $photo->getClientOriginalName(),);
-                    DB::table('parent_attachment')->create([
+                    $photo->storeAs( $this->National_ID_Father ,$photo->getClientOriginalName());
+                    ParentAttachment::create([
                         'name' => $photo->getClientOriginalName(),
-                        'parent_id' => $stu_parent->id,
+                        'parent_id' => StuParent::latest()->first()->id,
                     ]);
                 }
             }
@@ -92,48 +99,74 @@ class AddParents extends Component
         }
         catch(\Exception $e){
             $this->catchError = $e->getMessage();
-            dd($this->catchError);
-            
         }
     }
+    
+    //function to update forms
+    public function updateSubmitForm(){
+
+    }
+    //function to show data from DB
+    public function editParent($id){
+        $this->show_table = false;
+        $this->updateMode = true ;
+        $stu_parent = StuParent::where('id',$id)->first();
+        $this->Email = $stu_parent->email;
+
+    }
+
+    // function to go to form 2
     public function firstStepSubmit(){
-        // $this->validate([
-        //     'Email' => 'required|unique:stu_parents,Email,'.$this->id,
-        //     'Password' => 'required',
-        //     'Name_Father' => 'required',
-        //     'Name_Father_en' => 'required',
-        //     'Job_Father' => 'required',
-        //     'Job_Father_en' => 'required',
-        //     'National_ID_Father' => 'required|unique:stu_parents,National_ID_Father,' . $this->id,
-        //     'Passport_ID_Father' => 'required|unique:stu_parents,Passport_ID_Father,' . $this->id,
-        //     'Phone_Father' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-        //     'Nationality_Father_id' => 'required',
-        //     'Blood_Type_Father_id' => 'required',
-        //     'Religion_Father_id' => 'required',
-        //     'Address_Father' => 'required',
-        // ]);
+        $this->validate([
+            'Email' => 'required|unique:stu_parents,email,'.$this->id,
+            'Password' => 'required',
+            'Name_Father' => 'required',
+            'Name_Father_en' => 'required',
+            'Job_Father' => 'required',
+            'Job_Father_en' => 'required',
+            'National_ID_Father' => 'required|unique:stu_parents,fa_national_id,' . $this->id,
+            'Passport_ID_Father' => 'required|unique:stu_parents,fa_passport_id,' . $this->id,
+            'Phone_Father' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'Nationality_Father_id' => 'required',
+            'Blood_Type_Father_id' => 'required',
+            'Religion_Father_id' => 'required',
+            'Address_Father' => 'required',
+        ]);
         $this->currentStep = 2;
 
     }
 
-    public function secondStepSubmit(){
-        // $this->validate([
-        //     'Name_Mother' => 'required',
-        //     'Name_Mother_en' => 'required',
-        //     'National_ID_Mother' => 'required|unique:stu_parents,National_ID_Mother,' . $this->id,
-        //     'Passport_ID_Mother' => 'required|unique:stu_parents,Passport_ID_Mother,' . $this->id,
-        //     'Phone_Mother' => 'required',
-        //     'Job_Mother' => 'required',
-        //     'Job_Mother_en' => 'required',
-        //     'Nationality_Mother_id' => 'required',
-        //     'Blood_Type_Mother_id' => 'required',
-        //     'Religion_Mother_id' => 'required',
-        //     'Address_Mother' => 'required',
-        // ]);
-        $this->currentStep = 3;
 
+    // function to go to form 3
+    public function secondStepSubmit(){
+        $this->validate([
+            'Name_Mother' => 'required',
+            'Name_Mother_en' => 'required',
+            'National_ID_Mother' => 'required|unique:stu_parents,mo_national_id,' . $this->id,
+            'Passport_ID_Mother' => 'required|unique:stu_parents,mo_passport_id,' . $this->id,
+            'Phone_Mother' => 'required',
+            'Job_Mother' => 'required',
+            'Job_Mother_en' => 'required',
+            'Nationality_Mother_id' => 'required',
+            'Blood_Type_Mother_id' => 'required',
+            'Religion_Mother_id' => 'required',
+            'Address_Mother' => 'required',
+        ]);
+        $this->currentStep = 3;
+        
     }
 
+    public function editParentFormOne(){
+        $this->updateMode = true ;
+        $this->currentStep = 2;
+    }
+    
+    public function editParentFormTow(){
+        $this->updateMode = true ;
+        $this->currentStep = 3;
+    }
+
+    //form to return back form
     public function back($step){
 
         $this->currentStep = $step;
