@@ -124,13 +124,13 @@ return  [
     'Job_Mather_ar'         =>'Job Mather AR',
     'Job_Mather_en'         =>'Job Mather EN',
 
-    'National_ID_Mather'    =>'National ID Mather',
-    'Passport_ID_Mather'    =>'PassPort ID Mather',
-    'Phone_Mather'          =>'Phone number Mather',
-    'Nationality_Mather_id' =>'Mather nationality',
-    'Blood_Type_Mather_id'  =>'Mather Blood type',
-    'Religion_Mather_id'    =>'Religion Mather',
-    'Address_Mather'        =>'Address Mather',
+    'National_ID_Mother'    =>'National ID Mather',
+    'Passport_ID_Mother'    =>'PassPort ID Mather',
+    'Phone_Mother'          =>'Phone number Mather',
+    'Nationality_Mother_id' =>'Mather nationality',
+    'Blood_Type_Mother_id'  =>'Mather Blood type',
+    'Religion_Mother_id'    =>'Religion Mather',
+    'Address_Mother'        =>'Address Mather',
 
     'confirm'               =>'Are you sure to save the data?',
 

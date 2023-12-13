@@ -104,7 +104,12 @@ class AddParents extends Component
     
     //function to update forms
     public function updateSubmitForm(){
-        
+        // if($this->parent_id){
+        //     $stu_parents = StuParent::find($this->parent_id);
+        //     $stu_parents->update([
+
+        //     ]);
+        // }
     }
     //function to show data from DB
     public function editParent($id){

@@ -7,6 +7,7 @@
             <label class="text-control"><h5 style="color: rgb(0, 153, 255)">{{ trans('main_trans.Choose') }} ...</h5></label>
             <input type="file" class="form-control" wire:model="photos" accept="image/*" multiple>
             <br><br><br><br><br><br>
+            <input type="hidden" wire:model="parent_id">
             <label class="text-control"><h1 style="color: red">{{ trans('main_trans.confirm') }}</h1></label>
             <br><br>
             <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button"
