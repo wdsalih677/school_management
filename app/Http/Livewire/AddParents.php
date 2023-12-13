@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 class AddParents extends Component
 {
     use WithFileUploads;
-    public $currentStep = 1 ,$catchError ,$successMessage ,$photos = [] , $show_table = true ,$updateMode = false ,
+    public $currentStep = 1 ,$catchError ,$successMessage ,$photos = [] , $show_table = true ,$updateMode = false , $parent_id ,
     // Father_INPUTS
     $Email, $Password,
     $Name_Father, $Name_Father_en,
@@ -104,14 +104,38 @@ class AddParents extends Component
     
     //function to update forms
     public function updateSubmitForm(){
-
+        
     }
     //function to show data from DB
     public function editParent($id){
         $this->show_table = false;
         $this->updateMode = true ;
         $stu_parent = StuParent::where('id',$id)->first();
-        $this->Email = $stu_parent->email;
+        $this->parent_id                = $id;
+        $this->Email                    = $stu_parent->email; 
+        $this->Password                 = $stu_parent->password;
+        $this->Name_Father_en           = $stu_parent->getTranslation('fa_name','en');
+        $this->Name_Father       = $stu_parent->getTranslation('fa_name','ar');
+        $this->Name_Mother_en    = $stu_parent->getTranslation('mo_name','en');
+        $this->Name_Mother       = $stu_parent->getTranslation('mo_name','ar');
+        $this->Job_Father_en     = $stu_parent->getTranslation('fa_job','en');
+        $this->Job_Father        = $stu_parent->getTranslation('fa_job','ar');
+        $this->Job_Mother_en     = $stu_parent->getTranslation('mo_job','en');
+        $this->Job_Mother        = $stu_parent->getTranslation('mo_job','ar');
+        $this->Passport_ID_Father       = $stu_parent->fa_passport_id;
+        $this->Passport_ID_Mother       = $stu_parent->mo_passport_id;
+        $this->National_ID_Father       = $stu_parent->fa_national_id;
+        $this->National_ID_Mother       = $stu_parent->mo_national_id;
+        $this->Phone_Father             = $stu_parent->fa_phone;
+        $this->Phone_Mother             = $stu_parent->mo_phone;
+        $this->Blood_Type_Father_id     = $stu_parent->fa_blood_id;
+        $this->Blood_Type_Mother_id     = $stu_parent->mo_blood_id ;
+        $this->Nationality_Father_id    = $stu_parent->fa_nationality_id ;
+        $this->Nationality_Mother_id    = $stu_parent->mo_nationality_id ;
+        $this->Religion_Father_id       = $stu_parent->fa_religion_id ;
+        $this->Religion_Mother_id       = $stu_parent->mo_religion_id ;
+        $this->Address_Father           = $stu_parent->fa_address;
+        $this->Address_Mother           = $stu_parent->mo_address;
 
     }
 
@@ -164,6 +188,10 @@ class AddParents extends Component
     public function editParentFormTow(){
         $this->updateMode = true ;
         $this->currentStep = 3;
+    }
+
+    public function showformadd(){
+        $this->show_table = false;
     }
 
     //form to return back form

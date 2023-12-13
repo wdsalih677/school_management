@@ -96,6 +96,8 @@ return  [
     'Next'                  =>'Next',
     'Back'                  =>'Back',
     'Finish'                =>'Save Data',
+    'save_updates'          =>'Save updates',
+    'return'                =>'Back',
 
     'Email'                 =>'Email',
     'Password'              =>'Password',

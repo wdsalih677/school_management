@@ -3,6 +3,7 @@
     <div class="col-md-12 mb-30">
         <div class="card card-statistics h-100">
             <div class="card-body">
+                <button class="btn btn-success btn-sm btn-lg pull-right" wire:click="showformadd" type="button">{{ trans('main_trans.add_parents') }}</button><br><br><br>
                 <div class="table-responsive">
                     <table id="datatable1" class="table  table-hover table-sm table-bordered p-0 text-center" data-page-length="10"
                         style="text-align: right">
