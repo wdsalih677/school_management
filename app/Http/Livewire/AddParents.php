@@ -104,12 +104,12 @@ class AddParents extends Component
     
     //function to update forms
     public function updateSubmitForm(){
-        // if($this->parent_id){
-        //     $stu_parents = StuParent::find($this->parent_id);
-        //     $stu_parents->update([
+        if($this->parent_id){
+            $stu_parents = StuParent::find($this->parent_id);
+            $stu_parents->update([
 
-        //     ]);
-        // }
+            ]);
+        }
     }
     //function to show data from DB
     public function editParent($id){
@@ -120,13 +120,13 @@ class AddParents extends Component
         $this->Email                    = $stu_parent->email; 
         $this->Password                 = $stu_parent->password;
         $this->Name_Father_en           = $stu_parent->getTranslation('fa_name','en');
-        $this->Name_Father       = $stu_parent->getTranslation('fa_name','ar');
-        $this->Name_Mother_en    = $stu_parent->getTranslation('mo_name','en');
-        $this->Name_Mother       = $stu_parent->getTranslation('mo_name','ar');
-        $this->Job_Father_en     = $stu_parent->getTranslation('fa_job','en');
-        $this->Job_Father        = $stu_parent->getTranslation('fa_job','ar');
-        $this->Job_Mother_en     = $stu_parent->getTranslation('mo_job','en');
-        $this->Job_Mother        = $stu_parent->getTranslation('mo_job','ar');
+        $this->Name_Father              = $stu_parent->getTranslation('fa_name','ar');
+        $this->Name_Mother_en           = $stu_parent->getTranslation('mo_name','en');
+        $this->Name_Mother              = $stu_parent->getTranslation('mo_name','ar');
+        $this->Job_Father_en            = $stu_parent->getTranslation('fa_job','en');
+        $this->Job_Father               = $stu_parent->getTranslation('fa_job','ar');
+        $this->Job_Mother_en            = $stu_parent->getTranslation('mo_job','en');
+        $this->Job_Mother               = $stu_parent->getTranslation('mo_job','ar');
         $this->Passport_ID_Father       = $stu_parent->fa_passport_id;
         $this->Passport_ID_Mother       = $stu_parent->mo_passport_id;
         $this->National_ID_Father       = $stu_parent->fa_national_id;
