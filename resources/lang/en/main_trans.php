@@ -134,5 +134,15 @@ return  [
 
     'confirm'               =>'Are you sure to save the data?',
 
+    // ************************************************************************//
 
+    'teachers' => 'Teachers',
+    'teachers_list' => 'Teachers list',
+    'add_teacher' => 'Add Teacher',
+    'teacherName_ar' => 'Teacher Name AR',
+    'teacherName_en' => 'Teacher Name EN',
+    'gender' => 'Gender',
+    'specialty' => 'Specialty',
+    'joining_date' => 'Joining Date',
+    'address' => 'Address',
 ];

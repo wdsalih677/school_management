@@ -66,6 +66,19 @@
                         </ul>
                     </li>
                     <!-- end parents -->
+                    <!-- start teachers -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#teachers">
+                            <div class="pull-left"><i class="ti-palette"></i><span
+                                    class="right-nav-text">{{ trans('main_trans.teachers') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="teachers" class="collapse" data-parent="#sidebarnav">
+                            <li><a href="{{ route('teachers.index') }}">{{ trans('main_trans.teachers_list') }}</a></li>
+                        </ul>
+                    </li>
+                    <!-- end teachers -->
                 </ul>
             </div>
         </div>

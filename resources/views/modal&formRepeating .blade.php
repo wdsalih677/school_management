@@ -30,7 +30,7 @@
 
 
 {{-- Larg Modal --}}
-<div class="modal fade bd-example-modal-lg" id="empty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="addTeacher" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -54,7 +54,7 @@
 {{-- Larg Modal --}}
 
 {{-- larg maodal bottun --}}
-<button type="button" class="button x-small" data-toggle="modal" data-target="#empty">
+<button type="button" class="button x-small" data-toggle="modal" data-target="#addTeacher">
     Lg Modal
 </button>
 

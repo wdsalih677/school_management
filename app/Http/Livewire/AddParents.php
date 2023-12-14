@@ -107,8 +107,39 @@ class AddParents extends Component
         if($this->parent_id){
             $stu_parents = StuParent::find($this->parent_id);
             $stu_parents->update([
-
+                'email' =>  $this->Email,
+                'password' =>  Hash::make($this->Password),
+                'fa_name' => ['en'=> $this->Name_Father_en , 'ar'=>$this->Name_Father],
+                'mo_name' => ['en'=> $this->Name_Mother_en , 'ar'=>$this->Name_Mother],
+                'fa_job' => ['en'=> $this->Job_Father_en , 'ar'=>$this->Job_Father],
+                'mo_job' => ['en'=> $this->Job_Mother_en , 'ar'=>$this->Job_Mother],
+                'fa_passport_id' => $this->Passport_ID_Father,
+                'mo_passport_id' => $this->Passport_ID_Mother,
+                'fa_national_id' => $this->National_ID_Father,
+                'mo_national_id' => $this->National_ID_Mother,
+                'fa_phone' => $this->Phone_Father,
+                'mo_phone' => $this->Phone_Mother,
+                'fa_blood_id' => $this->Blood_Type_Father_id,
+                'mo_blood_id' => $this->Blood_Type_Mother_id,
+                'fa_nationality_id' => $this->Nationality_Father_id,
+                'mo_nationality_id' => $this->Nationality_Mother_id,
+                'fa_religion_id' => $this->Religion_Father_id,
+                'mo_religion_id' => $this->Religion_Mother_id,
+                'fa_address' => $this->Address_Father,
+                'mo_address' => $this->Address_Mother,
             ]);
+            if (!empty($this->photos)){
+                foreach ($this->photos as $photo) {
+                    $photo->storeAs( $this->National_ID_Father ,$photo->getClientOriginalName());
+                    ParentAttachment::create([
+                        'name' => $photo->getClientOriginalName(),
+                        'parent_id' => StuParent::latest()->first()->id,
+                    ]);
+                }
+            }
+            $this->reset();
+            $this->successMessage = trans('main_trans.edit_success');
+            $this->currentStep = 1;
         }
     }
     //function to show data from DB
@@ -186,11 +217,39 @@ class AddParents extends Component
     }
 
     public function editParentFormOne(){
+        // $this->validate([
+        //     'Email' => 'required|unique:stu_parents,email,'.$this->id,
+        //     'Password' => 'required',
+        //     'Name_Father' => 'required',
+        //     'Name_Father_en' => 'required',
+        //     'Job_Father' => 'required',
+        //     'Job_Father_en' => 'required',
+        //     'National_ID_Father' => 'required|unique:stu_parents,fa_national_id,' . $this->id,
+        //     'Passport_ID_Father' => 'required|unique:stu_parents,fa_passport_id,' . $this->id,
+        //     'Phone_Father' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+        //     'Nationality_Father_id' => 'required',
+        //     'Blood_Type_Father_id' => 'required',
+        //     'Religion_Father_id' => 'required',
+        //     'Address_Father' => 'required',
+        // ]);
         $this->updateMode = true ;
         $this->currentStep = 2;
     }
     
     public function editParentFormTow(){
+        // $this->validate([
+        //     'Name_Mother' => 'required',
+        //     'Name_Mother_en' => 'required',
+        //     'National_ID_Mother' => 'required|unique:stu_parents,mo_national_id,' . $this->id,
+        //     'Passport_ID_Mother' => 'required|unique:stu_parents,mo_passport_id,' . $this->id,
+        //     'Phone_Mother' => 'required',
+        //     'Job_Mother' => 'required',
+        //     'Job_Mother_en' => 'required',
+        //     'Nationality_Mother_id' => 'required',
+        //     'Blood_Type_Mother_id' => 'required',
+        //     'Religion_Mother_id' => 'required',
+        //     'Address_Mother' => 'required',
+        // ]);
         $this->updateMode = true ;
         $this->currentStep = 3;
     }

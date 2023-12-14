@@ -4,6 +4,7 @@ use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\schoolClass\SchoolClassController;
 use App\Http\Controllers\sections\sectionController;
+use App\Http\Controllers\teachers\TeacherController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 /*
@@ -67,6 +68,11 @@ Route::group(
         Route::view('stuParents','livewire.stu-parents.show-form')->name('stuParents');
 
         // *******************************end parents routes*************************************//
+        // ******************************start teachers routes************************************//
+
+        Route::resource('teachers' , TeacherController::class);
+
+        // *******************************end teachers routes*************************************//
         
     });
 require __DIR__.'/auth.php';
