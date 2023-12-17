@@ -139,6 +139,8 @@ return  [
     'teachers' => 'Teachers',
     'teachers_list' => 'Teachers list',
     'add_teacher' => 'Add Teacher',
+    'edit_teacher' => 'ُEdit Teacher',
+    'delete_teacher' => 'Delete Teacher',
     'teacherName_ar' => 'Teacher Name AR',
     'teacherName_en' => 'Teacher Name EN',
     'gender' => 'Gender',

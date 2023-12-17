@@ -10,4 +10,8 @@ interface teacherRepositryInterface{
     public function getSpecialty();
     
     public function setTeacher($request);
+
+    public function updateTeacher($request);
+
+    public function deleteTeacher($id);
 }

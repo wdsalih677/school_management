@@ -28,6 +28,15 @@
     <div class="col-md-12 mb-30">
         <div class="card card-statistics h-100">
             <div class="card-body">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <!--start teachers data-table -->
                 <div class="row">
                     <div class="col-md-12 mb-30">
@@ -63,17 +72,19 @@
                                                         <div class="dropdown">
                                                             <button aria-expanded="false" aria-haspopup="true"class="btn ripple btn-info btn-sm" data-toggle="dropdown" type="button">{{ trans('main_trans.operation') }}<i class="fa fa-caret-down ml-1"></i></button>
                                                             <div class="dropdown-menu tx-13">
-                                                                <button class="dropdown-item" data-reg_id="" data-toggle="modal" data-target="#edit" ><i
+                                                                <button class="dropdown-item" data-reg_id="" data-toggle="modal" data-target="#editTeacher{{ $teacher->id }}" ><i
                                                                     class="text-primary fa fa-edit"></i>
                                                                     {{ trans('main_trans.edit') }}
                                                                 </button>
-                                                                <button class="dropdown-item" data-reg_id="" data-toggle="modal" data-target="#delete" ><i
+                                                                <button class="dropdown-item" data-reg_id="" data-toggle="modal" data-target="#deleteTeacher{{ $teacher->id }}" ><i
                                                                     class="text-danger fa fa-trash"></i>
                                                                     {{ trans('main_trans.delete') }}
                                                                 </button>
                                                             </div>
                                                         </div>
                                                     </td>
+                                                    @include('teachers.edit')
+                                                    @include('teachers.delete')
                                                 @endforeach
                                             </tr>
                                         </tbody>

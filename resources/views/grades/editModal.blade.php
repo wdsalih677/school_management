@@ -27,7 +27,7 @@
                 <textarea name="notes" class="form-control" cols="10" rows="5">{{ $grade->notes }}</textarea>
             </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">{{ trans('main_trans.save') }}</button>
+                    <button type="submit" class="btn btn-success">{{ trans('main_trans.save_updates') }}</button>
                 </div>
             </form>
         </div>

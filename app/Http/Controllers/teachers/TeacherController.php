@@ -8,16 +8,23 @@ use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    protected $teacher;
-    protected $gender;
-    protected $specialty;
-    protected $setTeacher;
-    public function __construct(teacherRepositryInterface $teacher ,teacherRepositryInterface $gender ,teacherRepositryInterface $specialty , teacherRepositryInterface $setTeacher)
+    protected $teacher , $gender , $specialty , $setTeacher , $updateTeacher , $deleteTeacher;
+    
+    public function __construct(
+        teacherRepositryInterface $teacher ,
+        teacherRepositryInterface $gender ,
+        teacherRepositryInterface $specialty , 
+        teacherRepositryInterface $setTeacher,
+        teacherRepositryInterface $updateTeacher,
+        teacherRepositryInterface $deleteTeacher,
+    )
     {
         $this->teacher = $teacher;
         $this->gender = $gender;
         $this->specialty = $specialty;
         $this->setTeacher = $setTeacher;
+        $this->updateTeacher = $updateTeacher;
+        $this->deleteTeacher = $deleteTeacher;
     }
 
     public function index()
@@ -55,12 +62,12 @@ class TeacherController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        return $this->updateTeacher->updateTeacher($request);
     }
 
  
     public function destroy($id)
     {
-        //
+        return $this->deleteTeacher->deleteTeacher($id);
     }
 }

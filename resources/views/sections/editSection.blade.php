@@ -55,7 +55,7 @@
                           </div>
                         <br><br>
                         <button type="submit" class="button x-small">
-                            {{ trans('main_trans.save') }}
+                            {{ trans('main_trans.save_updates') }}
                         </button>
                     </form>
                 </div>

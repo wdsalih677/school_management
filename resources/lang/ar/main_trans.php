@@ -141,6 +141,8 @@ return  [
     'teachers' => 'المعلمين',
     'teachers_list' => 'قائمة المعلمين',
     'add_teacher' => 'إضافة معلم',
+    'edit_teacher' => 'تعديل معلم',
+    'delete_teacher' => 'حذف معلم',
     'teacherName_ar' => 'إسم المعلم بالعربي',
     'teacherName_en' => 'إسم المعلم بالإنجليزي',
     'gender' => 'الجنس',
