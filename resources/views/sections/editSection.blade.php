@@ -42,17 +42,31 @@
                         <br><br>
                         <div class="mb-3">
                             <div class="control-group" id="toastTypeGroup">
-                              <div class="controls">
+                                <div class="controls">
                                 <label class="d-block mb-2">{{ trans('main_trans.status') }}  :</label>
                                 <label class="radio mb-2">
-                                  <input type="radio" name="status" value="1" {{ $grade_list->status === 1 ? 'checked' : '' }} />{{ trans('main_trans.active') }}
+                                    <input type="radio" name="status" value="1" {{ $grade_list->status === 1 ? 'checked' : '' }} />{{ trans('main_trans.active') }}
                                 </label>
                                 <label class="radio mb-2">
-                                  <input type="radio" name="status" value="0" {{ $grade_list->status === 0 ? 'checked' : '' }} />{{ trans('main_trans.not_active') }}
+                                    <input type="radio" name="status" value="0" {{ $grade_list->status === 0 ? 'checked' : '' }} />{{ trans('main_trans.not_active') }}
                                 </label>
-                              </div>
+                                </div>
                             </div>
-                          </div>
+                        </div>
+                        <br><br>
+                        <div class="row">
+                            <div class="col">
+                                <label class="text-control">{{ trans('main_trans.teachers_select') }} :</label>
+                                <select class="form-control" name="teacher_id[]" multiple>
+                                    @php
+                                        $selectedTeacherId = $grade_list->teachers['id'] ?? null;
+                                    @endphp
+                                    @foreach($teachers as $teacher)
+                                        <option value="{{ $teacher->id }}" {{ $selectedTeacherId == $teacher->id ? 'selected' : '' }} >{{ $teacher->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <br><br>
                         <button type="submit" class="button x-small">
                             {{ trans('main_trans.save_updates') }}

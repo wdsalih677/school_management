@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->date('joining_date');
+            $table->text('joining_date');
             $table->text('address');
             $table->bigInteger('gender_id')->unsigned();
             $table->foreign('gender_id')->references('id')->on('genders')->onUpdate('cascade')->onDelete('cascade');

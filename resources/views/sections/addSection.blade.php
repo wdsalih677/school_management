@@ -36,6 +36,17 @@
                                 </select>
                             </div>
                         </div>
+                        <br>
+                        <div class="row">
+                           <div class="col">
+                                <label class="text-control">{{ trans('main_trans.teachers_select') }} :</label>
+                                <select class="form-control" name="teacher_id[]" multiple>
+                                    @foreach ( $teachers as $teacher )   
+                                        <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                    @endforeach
+                                </select>
+                           </div>
+                        </div>
                         <br><br>
                         <button type="submit" class="button x-small">
                             {{ trans('main_trans.save') }}

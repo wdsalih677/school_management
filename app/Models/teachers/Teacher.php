@@ -3,6 +3,7 @@
 namespace App\Models\teachers;
 
 use App\Models\genders\Gender;
+use App\Models\sctions\Section;
 use App\Models\specialties\Specialty;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,5 +23,9 @@ class Teacher extends Model
 
     public function specialties(){
         return $this->belongsTo(Specialty::class , 'specialty_id');
+    }
+
+    public function sections(){
+        return $this->belongsToMany(Section::class , 'teachers_sections');
     }
 }

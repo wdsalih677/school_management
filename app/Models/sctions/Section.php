@@ -4,6 +4,7 @@ namespace App\Models\sctions;
 
 use App\Models\Grades\Grade;
 use App\Models\schoolClass\SchoolClass;
+use App\Models\teachers\Teacher;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
@@ -22,5 +23,9 @@ class Section extends Model
 
         return $this->belongsTo(SchoolClass::class , 'class_id');
 
+    }
+
+    public function teachers(){
+        return $this->belongsToMany(Teacher::class , 'teachers_sections');
     }
 }

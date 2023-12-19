@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Grades\Grade;
 use App\Models\schoolClass\SchoolClass;
 use App\Models\sctions\Section;
+use App\Models\teachers\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,7 +18,8 @@ class sectionController extends Controller
     {
         $grades = Grade::with(['sections'])->get();
         $grade_lists = Grade::get();
-        return view('sections.section' , compact('grades' , 'grade_lists'));
+        $teachers = Teacher::get();
+        return view('sections.section' , compact('grades' , 'grade_lists','teachers'));
     }
 
 
@@ -62,7 +64,7 @@ class sectionController extends Controller
             $sections->status = 0 ;
 
             $sections->save();
-
+            $sections->teachers()->attach($request->teacher_id);
             toast(trans('main_trans.add_success'),'success');
             return redirect()->route('sections.index');
 
@@ -118,6 +120,11 @@ class sectionController extends Controller
             $sections->grade_id = $request->grade_id;
             $sections->class_id = $request->class_id;
             $sections->status = $request->status;
+            if(isset($request->teacher_id)){
+                $sections->teachers()->sync($request->teacher_id);
+            }else{
+                $sections->teachers()->sync(array());
+            }
             $sections->save();
             toast( trans('main_trans.edit_success') , 'success');
             return redirect()->route('sections.index');

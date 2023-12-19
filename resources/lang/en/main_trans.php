@@ -137,6 +137,7 @@ return  [
     // ************************************************************************//
 
     'teachers' => 'Teachers',
+    'teachers_select' => 'Secelct teachers',
     'teachers_list' => 'Teachers list',
     'add_teacher' => 'Add Teacher',
     'edit_teacher' => 'ُEdit Teacher',

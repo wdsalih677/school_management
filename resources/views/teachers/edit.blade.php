@@ -15,7 +15,7 @@
                     <form action="{{ route('teachers.update', $teacher->id) }}" method="post">
                         {{ method_field('patch') }}
                         @csrf
-                        <input type="text" name="id" value="{{ $teacher->id }}">
+                        <input type="hidden" name="id" value="{{ $teacher->id }}">
                        <div class="form-row">
                            <div class="col">
                                <label for="title">{{ trans('main_trans.Email') }} :</label>

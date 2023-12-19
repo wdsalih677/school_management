@@ -60,33 +60,33 @@
                                         </thead>
                                         <tbody>
                                             <?php $i=0; ?>
+                                            @foreach ( $teachers as $teacher )
                                             <tr>
-                                                <?php $i++; ?>
-                                                @foreach ( $teachers as $teacher )
-                                                    <td>{{ $i }}</td>
-                                                    <td>{{ $teacher->name }}</td>
-                                                    <td>{{ $teacher->email }}</td>
-                                                    <td>{{ $teacher->genders->name }}</td>
-                                                    <td>{{ $teacher->specialties->name }}</td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <button aria-expanded="false" aria-haspopup="true"class="btn ripple btn-info btn-sm" data-toggle="dropdown" type="button">{{ trans('main_trans.operation') }}<i class="fa fa-caret-down ml-1"></i></button>
-                                                            <div class="dropdown-menu tx-13">
-                                                                <button class="dropdown-item" data-reg_id="" data-toggle="modal" data-target="#editTeacher{{ $teacher->id }}" ><i
-                                                                    class="text-primary fa fa-edit"></i>
-                                                                    {{ trans('main_trans.edit') }}
-                                                                </button>
-                                                                <button class="dropdown-item" data-reg_id="" data-toggle="modal" data-target="#deleteTeacher{{ $teacher->id }}" ><i
-                                                                    class="text-danger fa fa-trash"></i>
-                                                                    {{ trans('main_trans.delete') }}
-                                                                </button>
-                                                            </div>
+                                            <?php $i++; ?>
+                                                <td>{{ $i }}</td>
+                                                <td>{{ $teacher->name }}</td>
+                                                <td>{{ $teacher->email }}</td>
+                                                <td>{{ $teacher->genders->name }}</td>
+                                                <td>{{ $teacher->specialties->name }}</td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button aria-expanded="false" aria-haspopup="true"class="btn ripple btn-info btn-sm" data-toggle="dropdown" type="button">{{ trans('main_trans.operation') }}<i class="fa fa-caret-down ml-1"></i></button>
+                                                        <div class="dropdown-menu tx-13">
+                                                            <button class="dropdown-item" data-reg_id="" data-toggle="modal" data-target="#editTeacher{{ $teacher->id }}" ><i
+                                                                class="text-primary fa fa-edit"></i>
+                                                                {{ trans('main_trans.edit') }}
+                                                            </button>
+                                                            <button class="dropdown-item" data-reg_id="" data-toggle="modal" data-target="#deleteTeacher{{ $teacher->id }}" ><i
+                                                                class="text-danger fa fa-trash"></i>
+                                                                {{ trans('main_trans.delete') }}
+                                                            </button>
                                                         </div>
-                                                    </td>
-                                                    @include('teachers.edit')
-                                                    @include('teachers.delete')
-                                                @endforeach
+                                                    </div>
+                                                </td>
+                                                @include('teachers.edit')
+                                                @include('teachers.delete')
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
