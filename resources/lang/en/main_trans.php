@@ -8,6 +8,7 @@ return  [
     'status'                =>'Status',
     'active'                =>'Active',
     'not_active'            =>'Not Active',
+    'personal_information'  => 'Personal Information',
 
     'dashboard'             =>'Home',
 
@@ -148,4 +149,20 @@ return  [
     'specialty' => 'Specialty',
     'joining_date' => 'Joining Date',
     'address' => 'Address',
+
+    // **************************************************************************** //
+
+    'students' => 'Students',
+    'add_student' => 'Add Students',
+    'student_name_ar' => 'Student name AR',
+    'student_name_en' => 'Student name EN',
+    'student_information' => 'Student Information',
+    'Nationality_id' =>'Nationality',
+    'Blood_Type_id'  =>'Blood Type',
+    'Religion_id'    =>'Religion',
+    'date_birth' => 'Birth Day',
+    'grade_select' => 'Grade Select',
+    'section_select' => 'Section Select',
+    'student_parent' => 'Student Parent',
+    'academic_year' => 'Academic Year',
 ];

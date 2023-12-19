@@ -79,6 +79,19 @@
                         </ul>
                     </li>
                     <!-- end teachers -->
+                    <!-- start students -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#students">
+                            <div class="pull-left"><i class="ti-palette"></i><span
+                                    class="right-nav-text">{{ trans('main_trans.students') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="students" class="collapse" data-parent="#sidebarnav">
+                            <li><a href="{{ route('students.create') }}">{{ trans('main_trans.add_student') }}</a></li>
+                        </ul>
+                    </li>
+                    <!-- end students -->
                 </ul>
             </div>
         </div>

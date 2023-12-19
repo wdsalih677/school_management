@@ -4,6 +4,7 @@ use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\schoolClass\SchoolClassController;
 use App\Http\Controllers\sections\sectionController;
+use App\Http\Controllers\students\studentController;
 use App\Http\Controllers\teachers\TeacherController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -73,6 +74,11 @@ Route::group(
         Route::resource('teachers' , TeacherController::class);
 
         // *******************************end teachers routes*************************************//
+        // ******************************start students routes************************************//
+
+        Route::resource('students' , studentController::class);
+
+        // *******************************end students routes*************************************//
         
     });
 require __DIR__.'/auth.php';

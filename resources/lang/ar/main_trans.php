@@ -9,6 +9,7 @@ return  [
     'status'                =>'الحاله',
     'active'                =>'نشط',
     'not_active'            =>'غير نشط',
+    'personal_information'  =>'المعلومات الشخصية',
 
     'dashboard'             =>'الرئيسية',
 
@@ -150,6 +151,20 @@ return  [
     'specialty' => 'التخصص',
     'joining_date' => 'تاريخ التعيين',
     'address' => 'العنوان',
-    
+    // ****************************************************************************************//
+
+    'students' => 'الطلاب',
+    'add_student' => 'إضافة طالب',
+    'student_name_ar' => 'إسم الطالب بالعربي',
+    'student_name_en' => 'إسم الطالب بالإنجليزي',
+    'student_information' => 'بيانات الطالب',
+    'Nationality_id' =>'الجنسية ',
+    'Blood_Type_id'  =>'فصيلة الدم ',
+    'Religion_id'    =>'الديانة',
+    'date_birth' => 'تاريخ الميلاد',
+    'grade_select' => 'إختيار المرحله',
+    'section_select' => 'إختيار القسم',
+    'student_parent' => 'ولي أمر الطالب',
+    'academic_year' => 'السنه الدراسيه',
     
 ];
