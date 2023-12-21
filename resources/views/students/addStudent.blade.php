@@ -55,7 +55,9 @@
                                 <label class="text-control">{{ trans('main_trans.Nationality_id') }} :</label>
                                 <select class="custom-select mr-sm-2" name="nationality_id">
                                     <option selected disabled>{{trans('main_trans.Choose')}}...</option>
-                                    
+                                    @foreach ( $Nationalities as $Nat )
+                                        <option value="{{ $Nat->id }}">{{ $Nat->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -64,7 +66,9 @@
                                 <label class="text-control">{{ trans('main_trans.gender') }} :</label>
                                 <select class="custom-select mr-sm-2" name="gender_id">
                                     <option selected disabled>{{trans('main_trans.Choose')}}...</option>
-                                    
+                                    @foreach ( $genders as $gender )
+                                        <option value="{{ $gender->id }}">{{ $gender->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -73,7 +77,9 @@
                                 <label class="text-control">{{ trans('main_trans.Blood_Type_id') }} :</label>
                                 <select class="custom-select mr-sm-2" name="blood_id">
                                     <option selected disabled>{{trans('main_trans.Choose')}}...</option>
-                                    
+                                    @foreach ( $bloods as $blood )
+                                        <option value="{{ $blood->id }}">{{ $blood->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -93,16 +99,18 @@
                                 <label class="text-control">{{ trans('main_trans.grade_select') }} :</label>
                                 <select class="custom-select mr-sm-2" name="garde_id">
                                     <option selected disabled>{{trans('main_trans.Choose')}}...</option>
-                                    
+                                    @foreach ( $grades as $grade )
+                                        <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label class="text-control">{{ trans('main_trans.class_select') }} :</label>
-                                <select class="custom-select mr-sm-2" name="class_is">
+                                <select class="custom-select mr-sm-2" name="class_id">
                                     <option selected disabled>{{trans('main_trans.Choose')}}...</option>
-                                    
+
                                 </select>
                             </div>
                         </div>
@@ -120,7 +128,9 @@
                                 <label class="text-control">{{ trans('main_trans.student_parent') }} :</label>
                                 <select class="custom-select mr-sm-2" name="parent_id">
                                     <option selected disabled>{{trans('main_trans.Choose')}}...</option>
-                                    
+                                    @foreach ( $stu_parents as $stu_parent )
+                                        <option value="{{ $stu_parent->id }}">{{ $stu_parent->fa_name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -129,7 +139,12 @@
                                 <label class="text-control">{{ trans('main_trans.academic_year') }} :</label>
                                 <select class="custom-select mr-sm-2" name="academic_year">
                                     <option selected disabled>{{trans('main_trans.Choose')}}...</option>
-                                    
+                                    @php
+                                    $current_year = date("Y");
+                                    @endphp
+                                    @for ($year = $current_year; $year<=$current_year +1 ;$year++ )
+                                        <option value="{{ $year}}">{{ $year }}</option>
+                                    @endfor
                                 </select>
                             </div>
                         </div>
@@ -144,5 +159,50 @@
 <!-- row closed -->
 @endsection
 @section('js')
-
+<script>
+    $(document).ready(function () {
+        $('select[name="garde_id"]').on('change', function () {
+            var garde_id = $(this).val();
+            if (garde_id) {
+                $.ajax({
+                    url: "{{ URL::to('getSchoolClass') }}/" + garde_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="class_id"]').empty();
+                        $.each(data, function (key, value) {
+                            $('select[name="class_id"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            }
+            else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('select[name="class_id"]').on('change', function () {
+            var class_id = $(this).val();
+            if (class_id) {
+                $.ajax({
+                    url: "{{ URL::to('getSection') }}/" + class_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="section_id"]').empty();
+                        $.each(data, function (key, value) {
+                            $('select[name="section_id"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            }
+            else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+</script>
 @endsection

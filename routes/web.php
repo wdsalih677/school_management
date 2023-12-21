@@ -78,6 +78,10 @@ Route::group(
 
         Route::resource('students' , studentController::class);
 
+        Route::get('getSchoolClass/{id}' , [studentController::class , 'getSchoolClass']);
+
+        Route::get('getSection/{id}' , [studentController::class , 'getSection']);
+
         // *******************************end students routes*************************************//
         
     });

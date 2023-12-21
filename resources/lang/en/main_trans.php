@@ -153,6 +153,7 @@ return  [
     // **************************************************************************** //
 
     'students' => 'Students',
+    'students_list' => 'Students List',
     'add_student' => 'Add Students',
     'student_name_ar' => 'Student name AR',
     'student_name_en' => 'Student name EN',
