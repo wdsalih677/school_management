@@ -33,6 +33,9 @@
                     <div class="col-md-12 mb-30">
                         <div class="card card-statistics h-100">
                             <div class="card-body">
+                                <button type="button" class="button x-small" data-toggle="modal" data-target="#importStudents">
+                                    {{ trans('main_trans.import_students_as_excel') }}
+                                </button>
                                 <div class="table-responsive">
                                     <table id="datatable1" class="table  table-hover table-sm table-bordered p-0" data-page-length="10"
                                         style="text-align: right">
@@ -64,6 +67,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                @include('students.importStudents')
                             </div>
                         </div>
                     </div>

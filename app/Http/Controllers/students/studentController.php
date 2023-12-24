@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\students;
 
 use App\Http\Controllers\Controller;
+use App\Imports\StudentImportClass;
 use App\Models\bloods\Blood;
 use App\Models\genders\Gender;
 use App\Models\Grades\Grade;
@@ -13,6 +14,7 @@ use App\Models\sctions\Section;
 use App\Models\students\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class studentController extends Controller
 {
@@ -85,5 +87,36 @@ class studentController extends Controller
     public function getSection($id){
         $sections = Section::where("class_id", $id)->pluck("name", "id");
         return $sections;
+    }
+    public function uploadStudents(Request $request){
+        // return $request;
+        try {
+            // Check if a file is present in the request
+            if ($request->hasFile('studentData')) {
+                $file = $request->file('studentData');
+    
+                // Ensure the file has a valid extension (e.g., xls, xlsx)
+                $extension = $file->getClientOriginalExtension();
+                $allowedExtensions = ['xls', 'xlsx'];
+    
+                if (!in_array($extension, $allowedExtensions)) {
+                    throw new \Exception('Invalid file format. Please upload a valid Excel file.');
+                }
+    
+                // Move the uploaded file to the desired storage location
+                $fileName = '2023' . time() . '.' . $extension;
+                $file->move(storage_path('app/students'), $fileName);
+    
+                // Import the data from the moved file
+                Excel::import(new StudentImportClass, storage_path('app/students/' . $fileName));
+    
+                return redirect()->route('students.index')->with('success', 'Students imported successfully');
+            } else {
+                throw new \Exception('No file uploaded. Please choose a file to upload.');
+            }
+        }  
+        catch(\Exception $e){
+            return $e;
+        }
     }
 }

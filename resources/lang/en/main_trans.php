@@ -166,4 +166,6 @@ return  [
     'section_select' => 'Section Select',
     'student_parent' => 'Student Parent',
     'academic_year' => 'Academic Year',
+    'import_students_as_excel' => 'Add students Excel',
+    'students_as_excel' => 'Attach students via Excel file',
 ];

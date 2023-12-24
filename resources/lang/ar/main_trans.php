@@ -167,5 +167,6 @@ return  [
     'section_select' => 'إختيار القسم',
     'student_parent' => 'ولي أمر الطالب',
     'academic_year' => 'السنه الدراسيه',
-    
+    'import_students_as_excel' => 'إضافة طلاب Excel',
+    'students_as_excel' => 'إرفاق طلاب عن طريق ملف Excel',
 ];

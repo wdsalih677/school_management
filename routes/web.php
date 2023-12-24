@@ -82,6 +82,8 @@ Route::group(
 
         Route::get('getSection/{id}' , [studentController::class , 'getSection']);
 
+        Route::post('uploadStudents' , [studentController::class , 'uploadStudents'])->name('uploadStudents');
+
         // *******************************end students routes*************************************//
         
     });
