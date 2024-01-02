@@ -38,25 +38,38 @@
                                 </button>
                                 <div class="table-responsive">
                                     <table id="datatable1" class="table  table-hover table-sm table-bordered p-0" data-page-length="10"
-                                        style="text-align: right">
+                                        style="text-align: center">
                                         <thead>
                                             <tr class="alert-success">
                                                 <th>#</th>
-                                                <th>#</th>
+                                                <th>name</th>
+                                                <th>email</th>
+                                                <th>gender</th>
+                                                <th>grade</th>
+                                                <th>classroom</th>
+                                                <th>section</th>
+                                                <th>opration</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ( $students as $student)
                                             <tr>
-                                                <td>1</td>
+                                                <td>{{ $loop->index+1 }}</td>
+                                                <td>{{ $student->name }}</td>
+                                                <td>{{ $student->email }}</td>
+                                                <td>{{ $student->genders->name }}</td>
+                                                <td>{{ $student->grades->name }}</td>
+                                                <td>{{ $student->schoolClasses->name }}</td>
+                                                <td>{{ $student->sections->name }}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button aria-expanded="false" aria-haspopup="true"class="btn ripple btn-info btn-sm" data-toggle="dropdown" type="button">{{ trans('main_trans.operation') }}<i class="fa fa-caret-down ml-1"></i></button>
                                                         <div class="dropdown-menu tx-13">
-                                                            <button class="dropdown-item" data-reg_id="" data-toggle="modal" data-target="#edit" ><i
+                                                            <a class="dropdown-item" href="{{ route('students.edit',$student->id) }}"><i
                                                                 class="text-primary fa fa-edit"></i>
                                                                 {{ trans('main_trans.edit') }}
-                                                            </button>
-                                                            <button class="dropdown-item" data-reg_id="" data-toggle="modal" data-target="#delete" ><i
+                                                            </a>
+                                                            <button class="dropdown-item" data-reg_id="" data-toggle="modal" data-target="#deleteStudent{{ $student->id }}" ><i
                                                                 class="text-danger fa fa-trash"></i>
                                                                 {{ trans('main_trans.delete') }}
                                                             </button>
@@ -64,6 +77,8 @@
                                                     </div>
                                                 </td>
                                             </tr>
+                                            @include('students.deleteStudent')
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

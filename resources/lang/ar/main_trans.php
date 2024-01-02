@@ -156,6 +156,8 @@ return  [
     'students' => 'الطلاب',
     'students_list' => 'قائمة الطلاب',
     'add_student' => 'إضافة طالب',
+    'edit_student' => 'تعديل طالب',
+    'delete_student' => 'حذف طالب',
     'student_name_ar' => 'إسم الطالب بالعربي',
     'student_name_en' => 'إسم الطالب بالإنجليزي',
     'student_information' => 'بيانات الطالب',

@@ -21,7 +21,12 @@ class studentController extends Controller
     
     public function index()
     {
-        return view('students.index');
+        $data['genders'] = Section::get();
+        $data['grades'] = Section::get();
+        $data['schoolClasses'] = Section::get();
+        $data['sections'] = Section::get();
+        $data['students'] = Student::get();
+        return view('students.index', $data);
     }
 
     
@@ -38,7 +43,7 @@ class studentController extends Controller
     
     public function store(Request $request)
     {
-        $students = new Student();
+        $students                   = new Student();
         $students->name             = ['en' => $request->name_en , 'ar' =>$request->name_ar];
         $students->email            = $request->email ;
         $students->password         = Hash::make($request->password);
@@ -66,19 +71,44 @@ class studentController extends Controller
     
     public function edit($id)
     {
-        //
+        $data['genders'] = Gender::get();
+        $data['grades'] = Grade::get();
+        $data['schoolClasses'] = SchoolClass::get();
+        $data['sections'] = Section::get();
+        $data['stu_parents'] = StuParent::get();
+        $data['Nationalities'] = Nationalitie::get();
+        $data['bloods'] = Blood::get();
+        $students = Student::findOrFail($id);
+        return view('students.editStudents',$data , compact('students'));
     }
 
     
     public function update(Request $request, $id)
     {
-        //
+        $students                   = Student::findOrFail($request->id);
+        $students->name             = ['en' => $request->name_en , 'ar' =>$request->name_ar];
+        $students->email            = $request->email ;
+        $students->password         = Hash::make($request->password);
+        $students->gender_id        = $request->gender_id;
+        $students->nationality_id   = $request->nationality_id;
+        $students->blood_id         = $request->blood_id;
+        $students->date_birth       = $request->date_birth;
+        $students->grade_id         = $request->garde_id;
+        $students->class_id         = $request->class_id;
+        $students->section_id       = $request->section_id;
+        $students->parent_id        = $request->parent_id;
+        $students->academic_year    = $request->academic_year;
+        $students->save();
+        toast(trans('main_trans.edit_success'),'success');
+        return redirect()->route('students.index');
     }
 
     
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        Student::destroy($request->id);
+        toast(trans('main_trans.delete_success'),'success');
+        return redirect()->route('students.index');
     }
     public function getSchoolClass($id){
         $schoolClasses = SchoolClass::where("grade_id", $id)->pluck("name", "id");

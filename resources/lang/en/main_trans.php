@@ -155,6 +155,8 @@ return  [
     'students' => 'Students',
     'students_list' => 'Students List',
     'add_student' => 'Add Students',
+    'edit_student' => 'Edit Students',
+    'delete_student' => 'Delete Students',
     'student_name_ar' => 'Student name AR',
     'student_name_en' => 'Student name EN',
     'student_information' => 'Student Information',
