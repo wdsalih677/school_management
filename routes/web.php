@@ -84,6 +84,8 @@ Route::group(
 
         Route::post('uploadStudents' , [studentController::class , 'uploadStudents'])->name('uploadStudents');
 
+        Route::get('download_attach/{student_name}/{file_name}' , [studentController::class , 'download_attach'])->name('download_attach');
+
         // *******************************end students routes*************************************//
         
     });

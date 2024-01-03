@@ -69,6 +69,10 @@
                                                                 class="text-primary fa fa-edit"></i>
                                                                 {{ trans('main_trans.edit') }}
                                                             </a>
+                                                            <a class="dropdown-item" href="{{ route('students.show',$student->id) }}"><i
+                                                                class="text-success fa fa-eye"></i>
+                                                                {{ trans('main_trans.show') }}
+                                                            </a>
                                                             <button class="dropdown-item" data-reg_id="" data-toggle="modal" data-target="#deleteStudent{{ $student->id }}" ><i
                                                                 class="text-danger fa fa-trash"></i>
                                                                 {{ trans('main_trans.delete') }}

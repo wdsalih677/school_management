@@ -28,7 +28,7 @@
     <div class="col-md-12 mb-30">
         <div class="card card-statistics h-100">
             <div class="card-body">
-                <form action="{{ route('students.store') }}" method="POST">
+                <form action="{{ route('students.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <h4 class="text-control text-primary">{{ trans('main_trans.personal_information') }}</h4>
                     <br>
@@ -91,6 +91,7 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
                     <h4 class="text-control text-primary">{{ trans('main_trans.student_information') }}</h4>
                     <br>
                     <div class="row">
@@ -148,6 +149,8 @@
                                 </select>
                             </div>
                         </div>
+                        <label class="text-control"><h5 style="color: rgb(0, 153, 255)">{{ trans('main_trans.Choose') }} ...</h5></label>
+                        <input type="file" class="form-control" name="photos[]" accept="image/*" multiple>
                     </div>
                     <br><br>
                     <button type="submit" class="button x-small">{{ trans('main_trans.save') }}</button>

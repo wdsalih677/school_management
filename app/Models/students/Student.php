@@ -4,6 +4,7 @@ namespace App\Models\students;
 
 use App\Models\genders\Gender;
 use App\Models\Grades\Grade;
+use App\Models\images\Image;
 use App\Models\schoolClass\SchoolClass;
 use App\Models\sctions\Section;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -35,5 +36,10 @@ class Student extends Model
     //function to get section 
     public function sections(){
         return $this->belongsTo(Section::class , 'section_id');
+    }
+
+    //realationship with images table to add students attachments
+    public function images(){
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

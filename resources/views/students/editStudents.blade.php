@@ -90,6 +90,7 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
                     <h4 class="text-control text-primary">{{ trans('main_trans.student_information') }}</h4>
                     <br>
                     <div class="row">

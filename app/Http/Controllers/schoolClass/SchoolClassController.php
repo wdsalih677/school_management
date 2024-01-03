@@ -29,7 +29,7 @@ class SchoolClassController extends Controller
         $rules = [
             'class_lists.*.name_ar'  => 'required|unique:school_classes,name->ar',
             'class_lists.*.name_en'  => 'required|unique:school_classes,name->en',
-            'class_lists.*.grade_id' => 'required|unique:school_classes,grade_id',
+            'class_lists.*.grade_id' => 'required',
         ];
         $messages = [
             'name_ar.required'      => trans('main_trans.required_className_ar'),
@@ -38,7 +38,6 @@ class SchoolClassController extends Controller
 
             'name_ar.unique'        => trans('main_trans.unique_className_ar'),
             'name_en.unique'        => trans('main_trans.unique_className_en'),
-            'grade_id.unique'       => trans('main_trans.unique_gradeNotes'),
         ];
 
         $validator = Validator::make($request->all(),$rules ,$messages);

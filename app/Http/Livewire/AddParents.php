@@ -130,7 +130,7 @@ class AddParents extends Component
             ]);
             if (!empty($this->photos)){
                 foreach ($this->photos as $photo) {
-                    $photo->storeAs( $this->National_ID_Father ,$photo->getClientOriginalName());
+                    $photo->storeAs( $this->National_ID_Father , $photo->getClientOriginalName());
                     ParentAttachment::create([
                         'name' => $photo->getClientOriginalName(),
                         'parent_id' => StuParent::latest()->first()->id,

@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('students.destroy' , $student->id) }}" method="POST">
+                <form action="{{ route( 'students.destroy' , $student->id ) }}" method="POST">
                     {{ method_field('delete') }}
                     @csrf
                 <input type="hidden" name="id" value="{{ $student->id }}">
@@ -20,7 +20,9 @@
                     </div>
                     <div class="col">
                         <label class="text-control">{{ trans('main_trans.student_name_en') }} :</label>
-                        <input type="text" class="form-control" value="{{ $student->getTranslation('name','en') }}" autocomplete="off" disabled>
+                        <input type="text" class="form-control" value="{{ $student 
+                          
+                          ->getTranslation('name','en') }}" autocomplete="off" disabled>
                     </div>
                 </div>
             </div>
