@@ -23,12 +23,9 @@ class studentController extends Controller
     
     public function index()
     {
-        $data['genders'] = Section::get();
-        $data['grades'] = Section::get();
-        $data['schoolClasses'] = Section::get();
-        $data['sections'] = Section::get();
-        $data['students'] = Student::get();
-        return view('students.index', $data);
+        
+        $students = Student::get();
+        return view('students.index', compact('students'));
     }
 
     
@@ -151,25 +148,17 @@ class studentController extends Controller
     public function uploadStudents(Request $request){
         // return $request;
         try {
-            // Check if a file is present in the request
+            
             if ($request->hasFile('studentData')) {
                 $file = $request->file('studentData');
-    
-                // Ensure the file has a valid extension (e.g., xls, xlsx)
                 $extension = $file->getClientOriginalExtension();
                 $allowedExtensions = ['xls', 'xlsx'];
-    
                 if (!in_array($extension, $allowedExtensions)) {
                     throw new \Exception('Invalid file format. Please upload a valid Excel file.');
                 }
-    
-                // Move the uploaded file to the desired storage location
                 $fileName = '2023' . time() . '.' . $extension;
                 $file->move(storage_path('app/students'), $fileName);
-    
-                // Import the data from the moved file
                 Excel::import(new StudentImportClass, storage_path('app/students/' . $fileName));
-    
                 return redirect()->route('students.index')->with('success', 'Students imported successfully');
             } else {
                 throw new \Exception('No file uploaded. Please choose a file to upload.');
@@ -180,7 +169,21 @@ class studentController extends Controller
         }
     }
     public function download_attach($studentName , $fileName){
-        // return response()->download(storage_path('app/attachments/'.$studentName.'/'.$fileName));
-        return $studentName ;
+        return response()->download(storage_path('app/attachments/'.$studentName.'/'.$fileName));
+    }
+
+    public function upload_attachment(Request $request){
+        if($request->hasFile('photo')){
+            foreach( $request->file('photo') as $file){
+                $name = $file->getClientOriginalName();
+                $file -> move( storage_path('app/attachments/students/'.$request->student_name) , $name );
+
+                $images = new Image();
+                $images->filename = $name;
+                $images->imageable_id = $request->student_id ;
+                $images->imageable_type = "App\Models\students";
+                $images->save();
+            }
+        }
     }
 }

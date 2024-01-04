@@ -171,6 +171,20 @@
                                         <div class="col-md-12 mb-30">
                                             <div class="card card-statistics h-100">
                                                 <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <form action="{{ route('upload_attachment') }}" method="post" enctype="multipart/form-data">
+                                                                @csrf
+                                                                <label class="text-control text-primary">{{ trans('main_trans.Choose') }}...</label>
+                                                                <input type="file" class="form-control" name="photo[]" accept="image/*" multiple>
+                                                                <input type="hidden" name="student_id" value="{{ $students->id  }}">
+                                                                <input type="hidden" name="student_name" value="{{ $students->name }}">
+                                                                <br><br>
+                                                                <button class="btn btn-primary" type="submit ">{{ trans('main_trans.save') }}</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
                                                     <div class="table-responsive">
                                                         <table id="datatable1" class="table  table-hover table-sm table-bordered p-0" data-page-length="10"
                                                             style="text-align: center">

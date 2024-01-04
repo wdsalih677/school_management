@@ -162,50 +162,5 @@
 <!-- row closed -->
 @endsection
 @section('js')
-<script>
-    $(document).ready(function () {
-        $('select[name="garde_id"]').on('change', function () {
-            var garde_id = $(this).val();
-            if (garde_id) {
-                $.ajax({
-                    url: "{{ URL::to('getSchoolClass') }}/" + garde_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        $('select[name="class_id"]').empty();
-                        $.each(data, function (key, value) {
-                            $('select[name="class_id"]').append('<option value="' + key + '">' + value + '</option>');
-                        });
-                    },
-                });
-            }
-            else {
-                console.log('AJAX load did not work');
-            }
-        });
-    });
-</script>
-<script>
-    $(document).ready(function () {
-        $('select[name="class_id"]').on('change', function () {
-            var class_id = $(this).val();
-            if (class_id) {
-                $.ajax({
-                    url: "{{ URL::to('getSection') }}/" + class_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        $('select[name="section_id"]').empty();
-                        $.each(data, function (key, value) {
-                            $('select[name="section_id"]').append('<option value="' + key + '">' + value + '</option>');
-                        });
-                    },
-                });
-            }
-            else {
-                console.log('AJAX load did not work');
-            }
-        });
-    });
-</script>
+
 @endsection

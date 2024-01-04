@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\promotions\promotionController;
 use App\Http\Controllers\schoolClass\SchoolClassController;
 use App\Http\Controllers\sections\sectionController;
 use App\Http\Controllers\students\studentController;
@@ -86,7 +87,14 @@ Route::group(
 
         Route::get('download_attach/{student_name}/{file_name}' , [studentController::class , 'download_attach'])->name('download_attach');
 
+        Route::post('upload_attachment/' , [studentController::class , 'upload_attachment'])->name('upload_attachment');
+
         // *******************************end students routes*************************************//
+        // *******************************start students pormotion routes***********************************//
+
+        Route::resource('stuPromotions' , promotionController::class);
+
+        // *******************************end students pormotion routes*************************************//
         
     });
 require __DIR__.'/auth.php';
